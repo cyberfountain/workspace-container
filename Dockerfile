@@ -1,10 +1,10 @@
 FROM phusion/baseimage:latest
 
 # Set Variables
-ENV WORKSPACE_NODE_VERSION "10.4.1"
-ENV MYSQL_USER "admin"
-ENV MYSQL_PASSWORD "admin"
-ENV MYSQL_DATABASE "db"
+ENV WORKSPACE_NODE_VERSION 10.4.1
+ENV MYSQL_USER admin
+ENV MYSQL_PASSWORD admin
+ENV MYSQL_DATABASE db
 
 # Default Shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
