@@ -52,12 +52,6 @@ RUN cd /tmp/redis-stable && make
 RUN cp /tmp/redis-stable/src/redis-cli /usr/local/bin/
 RUN rm -rf /tmp/redis-stable
 
-# Add bash aliasses
-ENV BASH_ALIASSES /home/$WORKSPACE_USER/.bash_aliases
-RUN touch $BASH_ALIASSES
-RUN echo 'alias mysql-connect="mysql -h mysql -D $MYSQL_DATABASE -u $MYSQL_USER --password=$MYSQL_PASSWORD"' >> $BASH_ALIASSES
-RUN echo 'alias redis-connect="redis-cli -h redis"' >> $BASH_ALIASSES
-
 # Create Working Directory
 RUN mkdir /code
 
@@ -66,6 +60,12 @@ WORKDIR /code
 
 # Expose Ports
 EXPOSE 3000
+
+# motd
+COPY ./motd/00-header /etc/update-motd.d/00-header
+COPY ./motd/00-help-text /etc/update-motd.d/00-help-text
+RUN echo 'run-parts /etc/update-motd.d' \
+    >> /etc/bash.bashrc
 
 COPY entrypoint/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
