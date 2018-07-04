@@ -66,3 +66,8 @@ WORKDIR /code
 
 # Expose Ports
 EXPOSE 3000
+
+COPY entrypoint/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
