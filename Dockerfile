@@ -63,7 +63,7 @@ EXPOSE 3000
 
 # motd
 COPY ./motd/00-header /etc/update-motd.d/00-header
-COPY ./motd/00-help-text /etc/update-motd.d/00-help-text
+COPY ./motd/10-help-text /etc/update-motd.d/10-help-text
 RUN echo 'run-parts /etc/update-motd.d' \
     >> /etc/bash.bashrc
 
