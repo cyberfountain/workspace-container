@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Workspace-Cli. Lukasz Wisniewski
+
+set -o errexit
+
+__clidir=/usr/local/workspace
+__vars=${__clidir}/etc/lib/vars/vars.sh
+__func=${__clidir}/etc/lib/func/func.sh
+__comm=${__clidir}/etc/commands
+__temp=${__clidir}/etc/templates
+__workdir=$(pwd)
+
+. ${__vars}
+. ${__func}
+
+case "$1" in
+	'') . ${__comm}/help.sh ;;
+	'--help') . ${__comm}/help.sh ;;
+	'-h') . ${__comm}/help.sh ;;
+	*) error "Check 'workspace --help' for some help..." ;;
+esac

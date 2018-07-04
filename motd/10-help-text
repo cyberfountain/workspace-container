@@ -13,5 +13,5 @@ Purple='\033[0;35m'
 Cyan='\033[0;36m'
 White='\033[0;37m'
 
-printf " ${Yellow}To see all available commands run:\n\n"
-printf "   ${Green}workspace\n\n"
+printf " ${Yellow}To see all available commands run:${NC}\n\n"
+printf "   ${Green}workspace${NC}\n\n"

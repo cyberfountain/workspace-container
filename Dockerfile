@@ -67,6 +67,13 @@ COPY ./motd/10-help-text /etc/update-motd.d/10-help-text
 RUN echo 'run-parts /etc/update-motd.d' \
     >> /etc/bash.bashrc
 
+# Workspace Cli
+RUN /usr/local/workspace
+COPY ./workspace/etc /usr/local/workspace/
+COPY ./workspace/bin/workspace /usr/local/bin/workspace
+RUN chmod +x /usr/local/bin/workspace
+
+# Entrypoint
 COPY entrypoint/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
