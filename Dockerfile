@@ -68,8 +68,8 @@ RUN echo 'run-parts /etc/update-motd.d' \
     >> /etc/bash.bashrc
 
 # Workspace Cli
-RUN mkdir /usr/local/workspace
-COPY ./workspace/etc /usr/local/workspace/
+RUN mkdir /usr/local/workspace/etc
+COPY ./workspace/etc /usr/local/workspace/etc/
 COPY ./workspace/bin/workspace /usr/local/bin/workspace
 RUN chmod +x /usr/local/bin/workspace
 
