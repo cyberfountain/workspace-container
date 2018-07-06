@@ -13,9 +13,17 @@ __workdir=$(pwd)
 . ${__vars}
 . ${__func}
 
-case "$1" in
-	'') . ${__comm}/help.sh ;;
-	'--help') . ${__comm}/help.sh ;;
-	'-h') . ${__comm}/help.sh ;;
-	*) error "Check 'workspace --help' for some help..." ;;
-esac
+if [ "$1" = "" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    . ${__comm}/help.sh
+elif [ "$1" = "mysql" ]; then
+    . ${__comm}/mysql.sh
+elif [ "$1" = "redis" ]; then
+    . ${__comm}/redis.sh
+elif [ "$1" = "install" ]; then
+    case "$2" in
+        'laravel') . ${__comm}/install/laravel.sh ;;
+        *) . ${__comm}/install.sh ;;
+    esac
+else
+   error "Check 'workspace --help' for some help..."
+fi

@@ -1,6 +1,7 @@
 FROM phusion/baseimage:latest
 
 # Set Variables
+ENV COLUMNS 200
 ENV WORKSPACE_NODE_VERSION 10.4.1
 ENV MYSQL_USER admin
 ENV MYSQL_PASSWORD admin
@@ -13,7 +14,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN add-apt-repository -y ppa:ondrej/php
 # Install Packages
 
-RUN apt-get update && apt-get install -y software-properties-common build-essential libkrb5-dev libfontconfig pkg-config libcurl4-openssl-dev libedit-dev libssl-dev libxml2-dev libjemalloc1 libjemalloc-dev gcc make python2.7 xz-utils openssl php-cli php-curl php-intl php-json php-xml php-mbstring php-mysql php-zip php-bcmath php-memcached php-gd php-dev git curl wget vim unzip mysql-client
+RUN apt-get update && apt-get install -y software-properties-common build-essential nasm libkrb5-dev libfontconfig pkg-config libcurl4-openssl-dev libedit-dev libssl-dev libxml2-dev libjemalloc1 libjemalloc-dev gcc make python2.7 xz-utils openssl php-cli php-curl php-intl php-json php-xml php-mbstring php-mysql php-zip php-bcmath php-memcached php-gd php-dev git curl wget vim unzip mysql-client
 
 # Install Composer
 RUN cd /tmp && curl -sS https://getcomposer.org/installer -o composer-setup.php
@@ -54,6 +55,7 @@ RUN rm -rf /tmp/redis-stable
 
 # Create Working Directory
 RUN mkdir /code
+RUN chown -R $WORKSPACE_USER:$WORKSPACE_USER /code
 
 # Set Working Directory
 WORKDIR /code
@@ -72,9 +74,3 @@ RUN mkdir /usr/local/workspace && mkdir /usr/local/workspace/etc
 COPY ./workspace/etc /usr/local/workspace/etc/
 COPY ./workspace/bin/workspace /usr/local/bin/workspace
 RUN chmod +x /usr/local/bin/workspace
-
-# Entrypoint
-COPY entrypoint/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]

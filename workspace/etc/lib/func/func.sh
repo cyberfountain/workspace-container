@@ -16,6 +16,7 @@ function message() {
 		'link') printf " ${UPurple}${2}${NC}\n" ;;
 		'blue') printf " ${Blue}${2}${NC}\n" ;;
 		'red') printf " ${Red}${2}${NC}\n" ;;
+		'cyan') printf " ${Cyan}${2}${NC}\n" ;;
 		*) printf " ${2}\n" ;;
 	esac
 }
