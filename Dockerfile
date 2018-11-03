@@ -40,8 +40,12 @@ ENV PATH $NVM_DIR/versions/node/v$WORKSPACE_NODE_VERSION/bin:$PATH
 
 RUN npm config set python /usr/bin/python2.7
 
+# Install Vue Cli
 RUN npm install --quiet -g @vue/cli
 RUN npm install --quiet -g @vue/cli-init
+
+# Install Gulp
+RUN npm install gulp-cli -g
 
 USER root
 
