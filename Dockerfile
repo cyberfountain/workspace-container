@@ -2,9 +2,9 @@ FROM phusion/baseimage:latest
 
 # Set Variables
 ENV WORKSPACE_NODE_VERSION 10.4.1
-ENV MYSQL_USER admin
-ENV MYSQL_PASSWORD admin
-ENV MYSQL_DATABASE db
+ENV DB_USER: "admin"
+ENV DB_PASSWORD: "admin"
+ENV DB_DATABASE: "db"
 
 # Default Shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -59,7 +59,7 @@ RUN rm -rf /tmp/redis-stable
 # Add bash aliasses
 ENV BASH_ALIASSES /home/$WORKSPACE_USER/.bash_aliases
 RUN touch $BASH_ALIASSES
-RUN echo 'alias mysql-connect="mysql -h mysql -D $MYSQL_DATABASE -u $MYSQL_USER --password=$MYSQL_PASSWORD"' >> $BASH_ALIASSES
+RUN echo 'alias mysql-connect="mysql -h mysql -D $DB_DATABASE -u $DB_USER --password=$DB_PASSWORD"' >> $BASH_ALIASSES
 RUN echo 'alias redis-connect="redis-cli -h redis"' >> $BASH_ALIASSES
 
 # Create Working Directory
