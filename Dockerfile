@@ -40,12 +40,11 @@ ENV PATH $NVM_DIR/versions/node/v$WORKSPACE_NODE_VERSION/bin:$PATH
 
 RUN npm config set python /usr/bin/python2.7
 
-# Install Vue Cli
-RUN npm install --quiet -g @vue/cli
-RUN npm install --quiet -g @vue/cli-init
-
 # Install Gulp
 RUN npm install gulp-cli -g
+
+# Install Typescript
+RUN npm install -g typescript
 
 USER root
 
@@ -59,8 +58,6 @@ RUN rm -rf /tmp/redis-stable
 # Add bash aliasses
 ENV BASH_ALIASSES /home/$WORKSPACE_USER/.bash_aliases
 RUN touch $BASH_ALIASSES
-RUN echo 'alias mysql-connect="mysql -h mysql -D $DB_DATABASE -u $DB_USER --password=$DB_PASSWORD"' >> $BASH_ALIASSES
-RUN echo 'alias redis-connect="redis-cli -h redis"' >> $BASH_ALIASSES
 
 # Create Working Directory
 RUN mkdir /code
