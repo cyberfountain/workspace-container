@@ -1,10 +1,8 @@
 FROM phusion/baseimage:latest
 
 # Set Variables
-ENV WORKSPACE_NODE_VERSION 10.4.1
-ENV DB_USER: "admin"
-ENV DB_PASSWORD: "admin"
-ENV DB_DATABASE: "db"
+ARG WORKSPACE_NODE_VERSION
+ENV WORKSPACE_NODE_VERSION $WORKSPACE_NODE_VERSION
 
 # Default Shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -28,7 +26,7 @@ USER $WORKSPACE_USER
 # Install Node with nvm
 RUN mkdir /home/$WORKSPACE_USER/nvm
 ENV NVM_DIR /home/$WORKSPACE_USER/nvm
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 
 RUN source $NVM_DIR/nvm.sh \
     && nvm install $WORKSPACE_NODE_VERSION \
