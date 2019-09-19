@@ -1,8 +1,7 @@
 FROM phusion/baseimage:latest
 
 # Set Variables
-ARG WORKSPACE_NODE_VERSION
-ENV WORKSPACE_NODE_VERSION $WORKSPACE_NODE_VERSION
+ENV WORKSPACE_NODE_VERSION 10.5.0
 
 # Default Shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
